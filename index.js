@@ -8,7 +8,7 @@ const { program } = require('commander');
 async function loadUrl(page, url) {
     try {
         await page.goto(url, {
-            timeout: 20000,
+            timeout: 30000,
             waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2']
         });
     } catch (error) {
