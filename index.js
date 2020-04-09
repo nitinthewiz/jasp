@@ -10,9 +10,9 @@ async function loadUrl(page, url) {
         await page.goto(url, {
             timeout: 20000,
             waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2']
-        })
+        });
     } catch (error) {
-        throw new Error("url " + url + " url not loaded -> " + error)
+        throw new Error("url " + url + " url not loaded -> " + error);
     }
 }
 
@@ -37,44 +37,47 @@ async function loadUrl(page, url) {
 
 	// await loadUrl(page, 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6');
 	// console.log(`${program.url}`);
-	await loadUrl(page, `${program.url}`);
+	try {
+		await loadUrl(page, `${program.url}`);
 
-	// console.log(await page.content());
-	await page.content();
+		// console.log(await page.content());
+		await page.content();
 
-	const short_id = shortid.generate();
+		const short_id = shortid.generate();
 
-  	// await divElement.click();
+	  	// await divElement.click();
 
-	// function takeScreenshot(interceptedRequest) {
-	// 	page.screenshot({path: 'screenshot1.png'});
-	// }
-	// page.on('load', takeScreenshot);
-	// await page.on('load');
+		// function takeScreenshot(interceptedRequest) {
+		// 	page.screenshot({path: 'screenshot1.png'});
+		// }
+		// page.on('load', takeScreenshot);
+		// await page.on('load');
 
-	// await page.screenshot({path: 'screenshot.png'});
-	if (program.elem) {
-		// const divElement = await page.$('div#ember61');
-		const domElement = await page.$(`${program.elem}`);
-		if (`${program.type}` == 'jpeg'){
-			await domElement.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
-		}
-		else{
-			await domElement.screenshot({path: 'screenshots/screenshot_'+short_id+'.png'});
-		}
-	}
-	else {
-		if (`${program.type}` == 'jpeg'){
-			await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
-		}
-		else{
-			await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.png'});
-		}
 		// await page.screenshot({path: 'screenshot.png'});
-		// await page.screenshot({path: 'screenshot.jpeg', quality: 100});	
-	}
-	
+		if (program.elem) {
+			// const divElement = await page.$('div#ember61');
+			const domElement = await page.$(`${program.elem}`);
+			if (`${program.type}` == 'jpeg'){
+				await domElement.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
+			}
+			else{
+				await domElement.screenshot({path: 'screenshots/screenshot_'+short_id+'.png'});
+			}
+		}
+		else {
+			if (`${program.type}` == 'jpeg'){
+				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
+			}
+			else{
+				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.png'});
+			}
+			// await page.screenshot({path: 'screenshot.png'});
+			// await page.screenshot({path: 'screenshot.jpeg', quality: 100});	
+		}
 
-	await browser.close();
+		await browser.close();
+	} catch (error) {
+        console.log(error);
+    }
 
 })();
