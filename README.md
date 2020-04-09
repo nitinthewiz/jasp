@@ -1,5 +1,5 @@
-# japs
-Just A Puppeteer Screenshotter
+# jasp
+Just A Screenshotting Puppeteer
 
 # Why?
 I need a way to automate getting screenshots of certain websites. CI seems to be a good way to do it.

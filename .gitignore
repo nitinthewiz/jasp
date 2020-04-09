@@ -7,7 +7,7 @@ yarn-error.log*
 lerna-debug.log*
 
 # screenshot files
-screenshots/
+screenshots/*
 
 # exception to the rule
 !screenshots/.gitkeep 
