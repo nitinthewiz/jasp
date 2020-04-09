@@ -1,0 +1,19 @@
+dist: trusty
+language: node_js
+node_js:
+  - node
+  - 'lts/*'
+
+cache: npm
+
+install:
+  npm install
+
+jobs:
+  include:
+    - name: Screenshot John Hopkins Covid-19 ArcGIS page
+      script:
+        - node index.js -u https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6
+    - name: Screenshot John Hopkins Covid-19 ArcGIS world map
+      script:
+        -  node index.js -u https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6 -e div#ember61
