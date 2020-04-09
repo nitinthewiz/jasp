@@ -20,3 +20,11 @@ jobs:
     - name: Screenshot John Hopkins Covid-19 ArcGIS world map
       script:
         -  node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' -e 'div#ember61'
+
+deploy:
+  provider: releases
+  api_key:
+    secure: ${RELEASE_KEY}
+  file_glob: true
+  file: screenshots/screenshot_*
+  skip_cleanup: true
