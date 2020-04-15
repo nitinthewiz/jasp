@@ -20,7 +20,14 @@ jobs:
     - name: Screenshot John Hopkins Covid-19 ArcGIS world map
       script:
         -  node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' -e 'div#ember61'
+    - name: Screenshot eleval observablehq div
+      script:
+        -  node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution' -e 'div#el2'
+    - name: Screenshot eleval observablehq page
+      script:
+        -  node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution'
 
+    
 deploy:
   provider: releases
   api_key: ${RELEASE_KEY}
