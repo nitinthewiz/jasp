@@ -33,4 +33,3 @@ deploy:
   api_key: ${RELEASE_KEY}
   file_glob: true
   file: screenshots/screenshot_*
-  skip_cleanup: true
