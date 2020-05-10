@@ -14,30 +14,9 @@ install:
 
 jobs:
   include:
-    - name: Screenshot John Hopkins Covid-19 ArcGIS page
+    - name: Run all screenshots
       script:
-        - node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'
-    - name: Screenshot John Hopkins Covid-19 ArcGIS world map
-      script:
-        -  node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' -e 'div#ember61'
-    - name: Screenshot eleval observablehq div
-      script:
-        -  node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution' -e 'div#el2'
-    - name: Screenshot eleval observablehq page
-      script:
-        -  node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution'
-    - name: Screenshot worldspandemic World card
-      script:
-        -  node index.js -u 'https://worldspandemic.com/'  -e '.cov19u-card'
-    - name: Screenshot worldspandemic Total World chart
-      script:
-        -  node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-evolution-chart'
-    - name: Screenshot worldspandemic Daily New Cases World chart
-      script:
-        -  node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-daily-chart'
-    - name: zip the folder
-      script:
-        - zip -r screenshots.zip screenshots/
+        - bash runner.sh
     
 deploy:
   provider: releases
