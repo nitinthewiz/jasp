@@ -26,7 +26,15 @@ jobs:
     - name: Screenshot eleval observablehq page
       script:
         -  node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution'
-
+    - name: Screenshot worldspandemic World card
+      script:
+        -  node index.js -u 'https://worldspandemic.com/'  -e '.cov19u-card'
+    - name: Screenshot worldspandemic Total World chart
+      script:
+        -  node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-evolution-chart'
+    - name: Screenshot worldspandemic Daily New Cases World chart
+      script:
+        -  node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-daily-chart'
     
 deploy:
   provider: releases
