@@ -35,10 +35,14 @@ jobs:
     - name: Screenshot worldspandemic Daily New Cases World chart
       script:
         -  node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-daily-chart'
+    - name: zip the folder
+      script:
+        - zip -r screenshots.zip screenshots/
     
 deploy:
   provider: releases
   api_key: ${RELEASE_KEY}
   file_glob: true
-  file: screenshots/screenshot_*
+  # file: screenshots/screenshot_*
+  file: screenshots.zip
   skip_cleanup: true
