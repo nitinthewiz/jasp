@@ -17,11 +17,16 @@ jobs:
     - name: Run all screenshots
       script:
         - bash runner.sh
-    
+
+before_deploy:
+  # Set up git user name and tag this commit
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
 deploy:
   provider: releases
   api_key: ${RELEASE_KEY}
   file_glob: true
   # file: screenshots/screenshot_*
   file: screenshots.zip
-  skip_cleanup: true
+  # skip_cleanup: true
+  cleanup: false
