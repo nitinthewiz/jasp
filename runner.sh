@@ -23,3 +23,4 @@ node index.js -u 'https://worldspandemic.com/'  -e '.covid19-ultimate-daily-char
 
 echo "zip the folder"
 zip -r screenshots.zip screenshots/
+cp screenshots.zip /tmp/.
