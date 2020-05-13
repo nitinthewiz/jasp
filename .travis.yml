@@ -27,6 +27,6 @@ deploy:
   api_key: ${RELEASE_KEY}
   file_glob: true
   # file: screenshots/screenshot_*
-  file: screenshots.zip
+  file: /tmp/screenshots.zip
   # skip_cleanup: true
   cleanup: false
