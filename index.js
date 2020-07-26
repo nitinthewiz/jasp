@@ -1,8 +1,9 @@
 const shortid = require('shortid');
+const Airtable = require('airtable');
 const puppeteer = require('puppeteer');
 const { program } = require('commander');
 
-
+var base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.MEDIATER_BASE_ID);
 
 // https://stackoverflow.com/questions/46948489/puppeteer-wait-page-load-after-form-submit
 async function loadUrl(page, url) {
@@ -76,6 +77,51 @@ async function loadUrl(page, url) {
 		}
 
 		await browser.close();
+
+		if (program.elem) {
+			filter_formula = 'AND({jasp_info_url} = "'+`${program.url}`+'", {jasp_info_element} = "'+`${program.elem}`+'")';
+		}
+		else {
+			filter_formula = 'AND({jasp_info_url} = "'+`${program.url}`+'", {jasp_info_element} = "")';
+		}
+
+		console.log(filter_formula);
+
+		base('am_Embed').select({
+		    maxRecords: 1,
+		    filterByFormula: filter_formula
+		}).firstPage(function(err, records) {
+		    if (err) { console.error(err); return; }
+		    records.forEach(function(record) {
+		        console.log('Retrieved', record.id);
+		        recordId = record.id;
+
+		        var file_name = "";
+		        if (`${program.type}` == 'jpeg'){
+					file_name = 'screenshot_'+short_id+'.jpeg';
+				}
+				else{
+					file_name = 'screenshot_'+short_id+'.png';
+				}
+
+		        base('am_Embed').update([
+				  {
+				    "id": recordId,
+				    "fields": {
+				      "file_name": file_name
+				    }
+				  }
+				], function(err, records) {
+				  if (err) {
+				    console.error(err);
+				    return;
+				  }
+				  records.forEach(function(record) {
+				    console.log(record.get('Name'));
+				  });
+				});
+		    });
+		});
 	} catch (error) {
         console.log(error);
     }
