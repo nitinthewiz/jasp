@@ -6,8 +6,8 @@ node_js:
 cache: npm
 
 before_install:
-  - git config --global user.email "Ansible_TravisCI@f5.com"
-  - git config --global user.name "Travis F5 Ansible"
+  - git config --global user.email "nitinthewiz@gmail.com"
+  - git config --global user.name "Nitin Khanna"
 
 install:
   npm install
