@@ -30,3 +30,5 @@ deploy:
   file: /tmp/screenshots.zip
   # skip_cleanup: true
   cleanup: false
+after_deploy:
+  - node post_deploy.js

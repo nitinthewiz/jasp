@@ -85,7 +85,7 @@ async function loadUrl(page, url) {
 			filter_formula = 'AND({jasp_info_url} = "'+`${program.url}`+'", {jasp_info_element} = "")';
 		}
 
-		console.log(filter_formula);
+		// console.log(filter_formula);
 
 		base('am_Embed').select({
 		    maxRecords: 1,
@@ -93,7 +93,7 @@ async function loadUrl(page, url) {
 		}).firstPage(function(err, records) {
 		    if (err) { console.error(err); return; }
 		    records.forEach(function(record) {
-		        console.log('Retrieved', record.id);
+		        // console.log('Retrieved', record.id);
 		        recordId = record.id;
 
 		        var file_name = "";
@@ -116,9 +116,6 @@ async function loadUrl(page, url) {
 				    console.error(err);
 				    return;
 				  }
-				  records.forEach(function(record) {
-				    console.log(record.get('Name'));
-				  });
 				});
 		    });
 		});
