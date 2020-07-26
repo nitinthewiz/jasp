@@ -4,7 +4,7 @@ echo "Screenshot John Hopkins Covid-19 ArcGIS page"
 node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6'
 
 echo "Screenshot John Hopkins Covid-19 ArcGIS world map"
-node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' -e 'div#ember61'
+node index.js -u 'https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6' -e 'div#esri.Map_2_root'
 
 echo "Screenshot eleval observablehq div"
 node index.js -u 'https://observablehq.com/@elaval/coronavirus-worldwide-evolution' -e 'div#el2'
