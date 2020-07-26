@@ -21,6 +21,9 @@ node index.js -u "https://worldspandemic.com/"  -e ".covid19-ultimate-evolution-
 echo "Screenshot worldspandemic Daily New Cases World chart"
 node index.js -u "https://worldspandemic.com/"  -e ".covid19-ultimate-daily-chart"
 
+echo "UW IHME - Total Deaths"
+node index.js -u "https://covid19.healthdata.org/united-states-of-america"  -e "#total-deaths"
+
 echo "zip the folder"
 zip -r screenshots.zip screenshots/
 cp screenshots.zip /tmp/.
