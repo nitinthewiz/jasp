@@ -24,6 +24,9 @@ node index.js -u "https://worldspandemic.com/"  -e ".covid19-ultimate-daily-char
 echo "UW IHME - Total Deaths"
 node index.js -u "https://covid19.healthdata.org/united-states-of-america"  -e "#total-deaths"
 
+echo "State scorecard test - AZ"
+node index.js -u "https://projects.propublica.org/reopening-america/" -e "#state-row-AZ"
+
 echo "zip the folder"
 zip -r screenshots.zip screenshots/
 cp screenshots.zip /tmp/.
