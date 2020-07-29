@@ -16,7 +16,8 @@ jobs:
   include:
     - name: Run all screenshots
       script:
-        - bash runner.sh
+        # - bash runner.sh
+        - node runner.js
 
 before_deploy:
   # Set up git user name and tag this commit

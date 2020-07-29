@@ -20,9 +20,11 @@
   "homepage": "https://github.com/nitinthewiz/japs#readme",
   "dependencies": {
     "airtable": "^0.8.1",
+    "ceil": "0.0.0",
     "commander": "^5.0.0",
     "puppeteer": "^2.1.1",
     "request": "^2.88.2",
+    "shelljs": "^0.8.4",
     "shortid": "^2.2.15"
   }
 }
