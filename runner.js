@@ -46,10 +46,11 @@ async function launcher() {
             if (record.get("view_type") == "mobile") {
                 run_cmd = run_cmd + " -w \"" + record.get("dimension - width") + "\"";
             }
+            // console output because otherwise travis fails after 10 minutes.
+            console.log(run_cmd);
 
             run_cmd = run_cmd + " -r \"" + record.id + "\"";
 
-            // console.log(run_cmd);
 
             // Run external tool synchronously
             if (shell.exec(run_cmd).code !== 0) {
