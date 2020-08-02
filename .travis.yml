@@ -14,16 +14,20 @@ install:
 
 jobs:
   include:
-    - name: Run all screenshots
-      script:
+    # - name: Run all screenshots
+    #   script:
         # - bash runner.sh
-        - node runner.js
+        # - node runner.js
     - stage: GitHub Release
-      script: echo "Deploying to GitHub releases ..."
+      script:
+        - echo "Run all screenshots"
+        - node runner.js
+        - echo "Deploying to GitHub releases"
       before_deploy:
         # Set up git user name and tag this commit
         - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
         - git tag $TRAVIS_TAG
+        - node runner.js
       deploy:
         provider: releases
         api_key: ${RELEASE_KEY}
