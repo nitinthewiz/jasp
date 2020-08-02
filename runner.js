@@ -5,18 +5,6 @@ const puppeteer = require('puppeteer');
 
 var base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.MEDIATER_BASE_ID);
 
-// https://stackoverflow.com/questions/46948489/puppeteer-wait-page-load-after-form-submit
-async function loadUrl(page, url) {
-    try {
-        await page.goto(url, {
-            timeout: 60000,
-            waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2']
-        });
-    } catch (error) {
-        throw new Error("url " + url + " url not loaded -> " + error);
-    }
-}
-
 async function launcher() {
 
     filter_formula = 'AND({Animated} = "Static")';
