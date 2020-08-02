@@ -12,6 +12,10 @@ before_install:
 install:
   npm install
 
+branches:
+  only:
+  - master
+
 jobs:
   include:
     # - name: Run all screenshots
