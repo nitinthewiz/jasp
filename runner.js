@@ -13,8 +13,9 @@ async function launcher() {
         // set maxRecords 1 for testing
         // maxRecords: 1,
         filterByFormula: filter_formula
-    }).firstPage(async function(err, records) {
-        if (err) { console.error(err); return; }
+    // }).firstPage(async function(err, records) {
+    }).eachPage(function page(records, fetchNextPage) {
+        // if (err) { console.error(err); return; }
         records.forEach(async function(record) {
             // console.log(record);
             // console.log(record.id);
@@ -47,6 +48,9 @@ async function launcher() {
             }
 
         });
+        fetchNextPage();
+    }, function done(err) {
+        if (err) { console.error(err); return; }
         if (shell.exec("zip -r screenshots.zip screenshots/").code !== 0) {
           shell.echo('Error: zip command failed');
           shell.exit(1);
