@@ -5,6 +5,7 @@ const puppeteer = require('puppeteer');
 const { program } = require('commander');
 
 var base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.MEDIATER_BASE_ID);
+// var base = new Airtable({apiKey: ''}).base(''); //Add your API keys here from guide
 
 // https://stackoverflow.com/questions/46948489/puppeteer-wait-page-load-after-form-submit
 async function loadUrl(page, url) {
@@ -27,6 +28,7 @@ async function loadUrl(page, url) {
 	  .option('-v, --view <type>', 'the view type. Options are tv and mobile. Default is tv', 'tv')
 	  .option('-w, --width <type>', 'the width of the page')
 	  .option('-r, --row <type>', 'the airtable row ID.')
+	  .option('-p, --producerRec <type>', 'The respective producer table recordID.')
 	  .parse(process.argv);
 
 	// console.log(process.argv);
@@ -146,7 +148,7 @@ async function loadUrl(page, url) {
 			file_name = 'screenshot_'+short_id+'.png';
 		}
 
-		base('am_Embed').update([
+		base('am_JaspPayload').update([
 		  {
 		    "id": program.row,
 		    "fields": {
@@ -159,6 +161,22 @@ async function loadUrl(page, url) {
 		    return;
 		  }
 		});
+
+		// TO UPDATE CovidProducer with filename 	
+		base('CovidFeedUSA_Producer').update([
+		  {
+		    "id": program.producerRec,
+		    "fields": {
+		      "data_jasp": file_name
+		    }
+		  }
+		], function(err, records) {
+		  if (err) {
+		    console.error(err);
+		    return;
+		  }
+		});
+
 
 		// base('am_Embed').select({
 		//     maxRecords: 1,
