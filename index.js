@@ -167,7 +167,7 @@ async function loadUrl(page, url) {
 		  {
 		    "id": program.producerRec,
 		    "fields": {
-		      "data_jasp": file_name
+		      "data_output": file_name
 		    }
 		  }
 		], function(err, records) {

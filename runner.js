@@ -12,7 +12,7 @@ async function launcher() {
 
     await base('am_JaspPayload').select({
         // set maxRecords 1 for testing
-        // maxRecords: 1,
+        maxRecords: 10,
         filterByFormula: filter_formula
     // }).firstPage(async function(err, records) {
     }).eachPage(function page(records, fetchNextPage) {

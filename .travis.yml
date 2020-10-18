@@ -40,6 +40,8 @@ jobs:
           bucket: ${AWS_S3_BUCKET}
           cleanup: false
           region: ${AWS_REGION}
-          local_dir: screenshots/
+          glob: "**/*"
+          local_dir: screenshots
+          upload_dir: screenshots
       after_deploy:
         - node post_deploy.js
