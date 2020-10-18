@@ -43,6 +43,7 @@ jobs:
           glob: "**/*"
           local_dir: screenshots
           upload_dir: screenshots
+          acl: public_read
           edge: true
       after_deploy:
         - node post_deploy.js
