@@ -43,5 +43,6 @@ jobs:
           glob: "**/*"
           local_dir: screenshots
           upload_dir: screenshots
+          edge: true
       after_deploy:
         - node post_deploy.js
