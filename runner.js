@@ -2,6 +2,8 @@ var shell = require('shelljs');
 const shortid = require('shortid');
 const Airtable = require('airtable');
 const puppeteer = require('puppeteer');
+var S3 = require('aws-sdk/clients/s3');
+var flushS3Bucket = require('flush-s3-bucket');
 
 var base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.MEDIATER_BASE_ID);
 // var base = new Airtable({apiKey: ''}).base(''); // Add mine here the revert while pushing 

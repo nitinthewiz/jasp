@@ -8,6 +8,9 @@ cache: npm
 before_install:
   - git config --global user.email "nitinthewiz@gmail.com"
   - git config --global user.name "Nitin Khanna"
+  - if ! [ -x "$(command -v aws)" ]; then curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" ; unzip awscliv2.zip ; sudo ./aws/install ; fi
+  # - aws configure
+  - aws s3 rm s3://${AWS_S3_BUCKET} --recursive
 
 install:
   npm install
