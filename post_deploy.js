@@ -19,14 +19,14 @@ request(options, (err, res, body) => {
   console.log(body.url);
 
   var filter_formula = 'AND({release_type} = "jasp_github_release")';
-  base('am_Embed').select({
+  base('am_JaspPayload').select({
 	    filterByFormula: filter_formula
 	}).firstPage(function(err, records) {
 	    if (err) { console.error(err); return; }
 	    records.forEach(function(record) {
 	        // console.log('Retrieved', record.id);
 	        recordId = record.id;
-	        base('am_Embed').update([
+	        base('am_JaspPayload').update([
 			  {
 			    "id": recordId,
 			    "fields": {
