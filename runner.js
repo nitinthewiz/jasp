@@ -24,7 +24,7 @@ async function launcher() {
             // console.log(record.get("jasp_info_url"));
             recordId = record.id;
             var producerRec = "";
-            if (record.get("CovidFeedUSA_Producer").length != 0){
+            if (record.get("CovidFeedUSA_Producer") != undefined){
                 producerRec = record.get("CovidFeedUSA_Producer")[0]; //Note - only pulls 1st connected record, in case multiple then will need to update this code
             }
 
