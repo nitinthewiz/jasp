@@ -23,7 +23,10 @@ async function launcher() {
             // console.log(record.get("jasp_info_element"));
             // console.log(record.get("jasp_info_url"));
             recordId = record.id;
-            var producerRec = record.get("CovidFeedUSA_Producer")[0]; //Note - only pulls 1st connected record, in case multiple then will need to update this code
+            var producerRec = "";
+            if (record.get("CovidFeedUSA_Producer").length != 0){
+                producerRec = record.get("CovidFeedUSA_Producer")[0]; //Note - only pulls 1st connected record, in case multiple then will need to update this code
+            }
 
             var run_cmd = ""
 
@@ -40,7 +43,9 @@ async function launcher() {
             // console output because otherwise travis fails after 10 minutes.
 
             run_cmd = run_cmd + " -r \"" + record.id + "\"";
-            run_cmd = run_cmd + " -p \"" + producerRec + "\"";
+            if (producerRec != ""){
+                run_cmd = run_cmd + " -p \"" + producerRec + "\"";
+            }
 
             console.log(run_cmd);
 

@@ -162,21 +162,23 @@ async function loadUrl(page, url) {
 		  }
 		});
 
-		// TO UPDATE CovidProducer with filename 	
-		base('CovidFeedUSA_Producer').update([
-		  {
-		    "id": program.producerRec,
-		    "fields": {
-		      "data_output": file_name,
-		      "payload": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
-		    }
-		  }
-		], function(err, records) {
-		  if (err) {
-		    console.error(err);
-		    return;
-		  }
-		});
+		if (program.producerRec !== undefined){
+			// TO UPDATE CovidProducer with filename 	
+			base('CovidFeedUSA_Producer').update([
+			  {
+			    "id": program.producerRec,
+			    "fields": {
+			      "data_output": file_name,
+			      "payload": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
+			    }
+			  }
+			], function(err, records) {
+			  if (err) {
+			    console.error(err);
+			    return;
+			  }
+			});
+		}
 
 
 		// base('am_Embed').select({
