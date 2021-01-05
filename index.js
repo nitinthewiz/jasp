@@ -95,6 +95,8 @@ async function loadUrl(page, url) {
 			await page.waitForSelector(`${program.elem}`);
 
 			if (program.blockerElem) {
+				console.log("there's an element to get rid of here");
+				console.log(`${program.blockerElem}`);
 				await page.click(`${program.blockerElem}`);
 			}
 			// await page.evaluate((elem_to_move_to) => {
@@ -124,6 +126,8 @@ async function loadUrl(page, url) {
 		}
 		else {
 			if (program.blockerElem) {
+				console.log("there's an element to get rid of here");
+				console.log(`${program.blockerElem}`);
 				await page.click(`${program.blockerElem}`);
 			}
 			if (`${program.type}` == 'jpeg'){
