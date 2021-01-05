@@ -97,7 +97,12 @@ async function loadUrl(page, url) {
 			if (program.blockerElem) {
 				console.log("there's an element to get rid of here");
 				console.log(`${program.blockerElem}`);
-				await page.click(`${program.blockerElem}`);
+				// const [button] = await page.$x("//button[@class='close-btn']");
+				const [button] = await page.$x(`${program.blockerElem}`);
+				if (button) {
+				    await button.click();
+				}
+				// await page.click(`${program.blockerElem}`);
 			}
 			// await page.evaluate((elem_to_move_to) => {
 			//    document.querySelector(elem_to_move_to).scrollIntoView();
@@ -128,7 +133,12 @@ async function loadUrl(page, url) {
 			if (program.blockerElem) {
 				console.log("there's an element to get rid of here");
 				console.log(`${program.blockerElem}`);
-				await page.click(`${program.blockerElem}`);
+				// const [button] = await page.$x("//button[@class='close-btn']");
+				const [button] = await page.$x(`${program.blockerElem}`);
+				if (button) {
+				    await button.click();
+				}
+				// await page.click(`${program.blockerElem}`);
 			}
 			if (`${program.type}` == 'jpeg'){
 				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
