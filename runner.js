@@ -47,6 +47,10 @@ async function launcher() {
                 run_cmd = run_cmd + " -p \"" + producerRec + "\"";
             }
 
+            if (record.get("blocker_element")) {
+                run_cmd = run_cmd + " -b \"" + record.get("blocker_element") + "\"";
+            }
+
             console.log(run_cmd);
 
 

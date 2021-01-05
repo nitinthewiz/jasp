@@ -29,6 +29,7 @@ async function loadUrl(page, url) {
 	  .option('-w, --width <type>', 'the width of the page')
 	  .option('-r, --row <type>', 'the airtable row ID.')
 	  .option('-p, --producerRec <type>', 'The respective producer table recordID.')
+	  .option('-b, --blockerElem <type>', 'The class/id of the blocker element to remove before taking screenshot.')
 	  .parse(process.argv);
 
 	// console.log(process.argv);
@@ -61,6 +62,10 @@ async function loadUrl(page, url) {
 		await page.content();
 
 		const short_id = shortid.generate();
+
+		if (program.blockerElem) {
+			await page.click(program.blockerElem);
+		}
 
 	  	// await divElement.click();
 
