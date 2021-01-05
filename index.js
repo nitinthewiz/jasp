@@ -95,8 +95,8 @@ async function loadUrl(page, url) {
 			await page.waitForSelector(`${program.elem}`);
 
 			if (program.blockerElem) {
-				console.log("there's an element to get rid of here");
-				console.log(`${program.blockerElem}`);
+				// console.log("there's an element to get rid of here");
+				// console.log(`${program.blockerElem}`);
 				
 				// This works perfectly for now
 				// await page.evaluate(() => { document.querySelector('.syndicated-modal').style.display = 'none'; });
