@@ -103,7 +103,7 @@ async function loadUrl(page, url) {
 				await page.evaluate(x => {
 				  document.querySelector(x).style.display = 'none';
 				}, `${program.blockerElem}`);
-				await page.waitFor(500);
+				await page.waitFor(1000);
 
 				// This seems  to  work half-baked
 				// await page.waitFor(".close-link > a");
@@ -161,7 +161,7 @@ async function loadUrl(page, url) {
 				await page.evaluate(x => {
 				  document.querySelector(x).style.display = 'none';
 				}, `${program.blockerElem}`);
-				await page.waitFor(500);
+				await page.waitFor(1000);
 			}
 			if (`${program.type}` == 'jpeg'){
 				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
