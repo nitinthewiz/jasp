@@ -97,12 +97,39 @@ async function loadUrl(page, url) {
 			if (program.blockerElem) {
 				console.log("there's an element to get rid of here");
 				console.log(`${program.blockerElem}`);
+				
+				// This works perfectly for now
+				// await page.evaluate(() => { document.querySelector('.syndicated-modal').style.display = 'none'; });
+				await page.evaluate(x => {
+				  document.querySelector(x).style.display = 'none';
+				}, `${program.blockerElem}`);
+				await page.waitFor(500);
+
+				// This seems  to  work half-baked
+				// await page.waitFor(".close-link > a");
+				// await page.evaluate(() => {
+				//     // this code works fine as well.
+				//     const element = document.querySelector(".close-link > a");
+				//     console.log(element);
+				//     // I can click on the button with the following line.
+				//     element.click();
+				//     element.click();
+				//     return true;
+				// });
+
+
+				// This doesn't work
+				// await page.waitForXPath(`${program.blockerElem}`);
 				// const [button] = await page.$x("//button[@class='close-btn']");
-				const [button] = await page.$x(`${program.blockerElem}`);
-				if (button) {
-				    await button.click();
-				}
+				// const [button] = await page.$x(`${program.blockerElem}`);
+				// const [button] = await page.$x(".close-link > a");
+				// console.log(button);
+				// if (button) {
+					// await page.waitFor(`${program.blockerElem}`);
+				    // await button.click();
+				// }
 				// await page.click(`${program.blockerElem}`);
+				// await page.click(".close-link > a");
 			}
 			// await page.evaluate((elem_to_move_to) => {
 			//    document.querySelector(elem_to_move_to).scrollIntoView();
@@ -131,14 +158,10 @@ async function loadUrl(page, url) {
 		}
 		else {
 			if (program.blockerElem) {
-				console.log("there's an element to get rid of here");
-				console.log(`${program.blockerElem}`);
-				// const [button] = await page.$x("//button[@class='close-btn']");
-				const [button] = await page.$x(`${program.blockerElem}`);
-				if (button) {
-				    await button.click();
-				}
-				// await page.click(`${program.blockerElem}`);
+				await page.evaluate(x => {
+				  document.querySelector(x).style.display = 'none';
+				}, `${program.blockerElem}`);
+				await page.waitFor(500);
 			}
 			if (`${program.type}` == 'jpeg'){
 				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
