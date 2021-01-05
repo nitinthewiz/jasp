@@ -63,10 +63,6 @@ async function loadUrl(page, url) {
 
 		const short_id = shortid.generate();
 
-		if (program.blockerElem) {
-			await page.click(program.blockerElem);
-		}
-
 	  	// await divElement.click();
 
 		// function takeScreenshot(interceptedRequest) {
@@ -97,6 +93,10 @@ async function loadUrl(page, url) {
 			// check. If after the page content has loaded, this waitforselector
 			// doesn't return immediately, the script should fail.
 			await page.waitForSelector(`${program.elem}`);
+
+			if (program.blockerElem) {
+				await page.click(`${program.blockerElem}`);
+			}
 			// await page.evaluate((elem_to_move_to) => {
 			//    document.querySelector(elem_to_move_to).scrollIntoView();
 			// }, `${program.elem}`);
@@ -123,6 +123,9 @@ async function loadUrl(page, url) {
 			}
 		}
 		else {
+			if (program.blockerElem) {
+				await page.click(`${program.blockerElem}`);
+			}
 			if (`${program.type}` == 'jpeg'){
 				await page.screenshot({path: 'screenshots/screenshot_'+short_id+'.jpeg', quality: 100});
 			}
