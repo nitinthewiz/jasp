@@ -39,7 +39,6 @@ async function loadUrl(page, url) {
 	// set headless false for testing
 	// const browser = await puppeteer.launch({headless: false});
 	const browser = await puppeteer.launch();
-	
 
 	const page = await browser.newPage();
 	VIEWPORT = { width: 1920, height: 1080, deviceScaleFactor: 2 };
@@ -97,7 +96,6 @@ async function loadUrl(page, url) {
 			if (program.blockerElem) {
 				// console.log("there's an element to get rid of here");
 				// console.log(`${program.blockerElem}`);
-				
 				// This works perfectly for now
 				// await page.evaluate(() => { document.querySelector('.syndicated-modal').style.display = 'none'; });
 				await page.evaluate(x => {
@@ -208,13 +206,13 @@ async function loadUrl(page, url) {
 		});
 
 		if (program.producerRec !== undefined){
-			// TO UPDATE CovidProducer with filename 	
+			// TO UPDATE CovidProducer with filename
+			// "payload": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
 			base('CovidFeedUSA_Producer').update([
 			  {
 			    "id": program.producerRec,
 			    "fields": {
-			      "data_output": file_name,
-			      "payload": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
+			      "data_output": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
 			    }
 			  }
 			], function(err, records) {
