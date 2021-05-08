@@ -200,7 +200,8 @@ async function loadUrl(page, url) {
 					"Sourcecard_URL": `${program.url}`,
 					"imageURL": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
 				}]
-		    }
+		    },
+		    "typecast":true
 		  }
 		], function(err, records) {
 		  if (err) {
