@@ -196,12 +196,8 @@ async function loadUrl(page, url) {
 		    "id": program.row,
 		    "fields": {
 		      "file_name": file_name,
-		      "data_output": [{
-					"Sourcecard_URL": `${program.url}`,
-					"imageURL": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
-				}]
-		    },
-		    "typecast":true
+		      "data_output": "[{\n\t\"Sourcecard_URL\": `${program.url}`,\n\t\"imageURL\": \"https://\" + " + process.env.AWS_S3_BUCKET + " + \".s3-\" + " + process.env.AWS_REGION + " + \".amazonaws.com/screenshots/\" + " + file_name + "}]"
+		    }
 		  }
 		], function(err, records) {
 		  if (err) {
@@ -209,6 +205,12 @@ async function loadUrl(page, url) {
 		    return;
 		  }
 		});
+
+
+        // [{
+		// 	"Sourcecard_URL": `${program.url}`,
+		// 	"imageURL": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
+		// }]
 
 		if (program.producerRec !== undefined){
 			// TO UPDATE CovidProducer with filename
