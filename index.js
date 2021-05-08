@@ -212,7 +212,10 @@ async function loadUrl(page, url) {
 			  {
 			    "id": program.producerRec,
 			    "fields": {
-			      "data_output": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
+			        "data_output": [{
+						"Sourcecard_URL": `${program.url}`,
+						"imageURL": "https://" + process.env.AWS_S3_BUCKET + ".s3-" + process.env.AWS_REGION + ".amazonaws.com/screenshots/" + file_name
+					}]
 			    }
 			  }
 			], function(err, records) {
