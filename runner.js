@@ -15,7 +15,8 @@ async function launcher() {
         // maxRecords: 5,
         filterByFormula: filter_formula
     // }).firstPage(async function(err, records) {
-    }).eachPage(function page(records, fetchNextPage) {
+    // }).eachPage(function page(records, fetchNextPage) {
+    }).all().then(records => {
         // if (err) { console.error(err); return; }
         records.forEach(async function(record) {
             // console.log(record);
@@ -61,7 +62,7 @@ async function launcher() {
             }
 
         });
-        fetchNextPage();
+        // fetchNextPage();
     }, function done(err) {
         if (err) { console.error(err); return; }
         if (shell.exec("zip -r screenshots.zip screenshots/").code !== 0) {
